@@ -62,6 +62,12 @@ public:
 		return{ x * a, y * a };
 	}
 
+	// multiply single
+	const Vec2 operator*(T a) const
+	{
+		return{ x * a, y * a };
+	}
+
 	// multiply vec
 	const Vec2 operator*(const Vec2& a)
 	{

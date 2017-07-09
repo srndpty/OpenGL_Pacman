@@ -1,5 +1,5 @@
 #include "glad/glad.h"
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -220,6 +220,11 @@ int main()
 	numId = LoadBmp("images/num.bmp");
 	pacmanId = LoadBmp("images/pacman.bmp");
 	fieldId = LoadBmp("images/field.bmp");
+
+	float ratio;
+	int width, height;
+	glfwGetFramebufferSize(window, &width, &height);
+	ratio = width / (float)height;
 
 
 	// ÉQÅ[ÉÄÉãÅ[Év

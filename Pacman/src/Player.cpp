@@ -1,11 +1,13 @@
 #include "Player.h"
 #include "FieldChip.h"
+#include "Field.h"
 
 Player::Player()
 {
-	mPos = { 5, 10 };
-	InitSpriteInfo(Vec2f{ 0, 0 }, FieldChip::SIZE);
+	mPos = { 5, 5 };
+	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
 	RefreshUv(0, 0);
+	mDirection = Direction::Up;
 	SetNextDirection(Direction::Up);
 	ChangeDirection();
 }
@@ -22,17 +24,72 @@ void Player::Tick()
 
 	// ˆÚ“®
 	pos += mMoveSpeed;
+
+	if (IsPassedOverDestination())
+	{
+		UpdatePosition();
+		ChangeDirection();
+	}
+}
+
+void Player::UpdatePosition()
+{
+	switch (mDirection)
+	{
+	case Player::Direction::Up:
+		--mPos.y;
+		break;
+	case Player::Direction::Down:
+		++mPos.y;
+		break;
+	case Player::Direction::Left:
+		--mPos.x;
+		break;
+	case Player::Direction::Right:
+		++mPos.x;
+		break;
+	default:
+		SHOULD_NOT_REACH_HERE();
+		break;
+	}
+
+	std::cout << "position updated (" << mPos.x << ", " << mPos.y << ")\n";
+
+	pos.x = Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x;
+	pos.y = Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y;
+}
+
+bool Player::IsPassedOverDestination() const
+{
+	Vec2i offset;
+
+	switch (mDirection)
+	{
+	case Player::Direction::Up:
+		return pos.y >= Field::BASE_POS.y - (mPos.y - 1) * FieldChip::SIZE.y;
+	case Player::Direction::Down:
+		return pos.y <= Field::BASE_POS.y - (mPos.y + 1) * FieldChip::SIZE.y;
+	case Player::Direction::Left:
+		return pos.x <= Field::BASE_POS.x + (mPos.x - 1) * FieldChip::SIZE.x;
+	case Player::Direction::Right:
+		return pos.x >= Field::BASE_POS.x + (mPos.x + 1) * FieldChip::SIZE.x;
+	default:
+		SHOULD_NOT_REACH_HERE();
+		break;
+	}
+
+	return false;
 }
 
 void Player::SetNextDirection(Direction dir)
 {
-	mDirection = dir;
-	ChangeDirection();
+	mNextDirection = dir;
+	//ChangeDirection();
 }
 
 void Player::ChangeDirection()
 {
-	switch (mDirection)
+	switch (mNextDirection)
 	{
 	case Player::Direction::Up:
 		mMoveSpeed = { 0, +MOVE_SPEED };
@@ -51,8 +108,11 @@ void Player::ChangeDirection()
 		RefreshUv(mChipIndex.x, 3);
 		break;
 	default:
+		SHOULD_NOT_REACH_HERE();
 		break;
 	}
+
+	mDirection = mNextDirection;
 }
 
 void Player::RefreshUv(const int horizontal, const int vertical)

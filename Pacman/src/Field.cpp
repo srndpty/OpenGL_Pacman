@@ -13,7 +13,7 @@ Field::Field()
 		for (size_t j = 0; j < SIZE.x; j++)
 		{
 			// yはマイナス方向へ
-			mFieldChips[i][j].Initialize(Vec2f{ BASE_POS.x + FieldChip::SIZE.x * j / 2, BASE_POS.y - FieldChip::SIZE.y / 2 * i }, FieldChip::SIZE);
+			mFieldChips[i][j].Initialize(Vec2f{ BASE_POS.x + FieldChip::SIZE.x * j, BASE_POS.y - FieldChip::SIZE.y * i }, FieldChip::SIZE);
 		}
 	}
 

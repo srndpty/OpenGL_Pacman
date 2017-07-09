@@ -48,13 +48,13 @@ public:
 	void InitSpriteInfo(const Vec2f& aPos, const Vec2f& aSize)
 	{
 		pos = aPos;
-		size = aSize;
+		size = aSize * 2;
 
 		// left bottom origined - counter clockwise
-		vertex[0] = geom[0] = { -aSize.x / 2, +aSize.y / 2 };
-		vertex[1] = geom[1] = { +aSize.x / 2, +aSize.y / 2 };
-		vertex[2] = geom[2] = { +aSize.x / 2, -aSize.y / 2 };
-		vertex[3] = geom[3] = { -aSize.x / 2, -aSize.y / 2 };
+		vertex[0] = geom[0] = { -size.x / 2, +size.y / 2 };
+		vertex[1] = geom[1] = { +size.x / 2, +size.y / 2 };
+		vertex[2] = geom[2] = { +size.x / 2, -size.y / 2 };
+		vertex[3] = geom[3] = { -size.x / 2, -size.y / 2 };
 
 		SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 	}
@@ -69,9 +69,10 @@ public:
 			geom[i] = pos + vertex[i];
 		}
 
+
 		mat4x4_identity(m);
+		mat4x4_ortho(p, -ASPECT_RATIO, ASPECT_RATIO, -1.0f, 1.0f, 1.0f, -1.0f);
 		mat4x4_translate_in_place(m, pos.x, pos.y, 0);
-		mat4x4_ortho(p, -ASPECT_RATIO, ASPECT_RATIO, -1.f, 1.f, 1.f, -1.f);
 		mat4x4_mul(mvp, p, m);
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

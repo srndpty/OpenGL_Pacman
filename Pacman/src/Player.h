@@ -25,6 +25,7 @@ private:
 	Vec2i mChipIndex;
 	Vec2i mPos;
 	Direction mDirection;
+	Direction mNextDirection;
 	Vec2f mMoveSpeed;
 
 public:
@@ -36,6 +37,8 @@ public:
 	void Tick() override;
 
 	/// normal
+	void UpdatePosition();
+	bool IsPassedOverDestination() const;
 	void SetNextDirection(Direction dir);
 	void ChangeDirection();
 	void RefreshUv(const int horizontal, const int vertical);
