@@ -149,6 +149,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Billboard.h" />
     <ClInclude Include="src\Def.h" />
     <ClInclude Include="src\glad\glad.h" />
     <ClInclude Include="src\glad\KHR\khrplatform.h" />

@@ -16,6 +16,7 @@
 #include "Loader.h"
 #include "Random.h"
 #include "NumDisp.h"
+#include "Billboard.h"
 
 // game specific headers
 
@@ -48,8 +49,13 @@ namespace
 	bool firstGameOver = true;
 	int scorePoint = 0;
 
+	// test
+	std::unique_ptr<Billboard> test0 = std::make_unique<Billboard>(Vec2f{ 0, -0.3f }, Vec2f{ 0.2f, 0.2f });
+	std::unique_ptr<Billboard> test1 = std::make_unique<Billboard>(Vec2f{ 0, +0.3f }, Vec2f{ 0.2f, 0.2f });
+
 	// texture ids
-	GLuint stoneId;
+	GLuint pacmanId;
+	GLuint fieldId;
 	GLuint numId;
 }
 
@@ -124,6 +130,8 @@ void Draw()
 	scoreDispBlack->Draw(numId);
 	scoreDispWhite->Draw(numId);
 
+	test0->Draw(pacmanId);
+	test1->Draw(fieldId);
 }
 
 //----------------------------------------
@@ -204,6 +212,8 @@ int main()
 
 	// load images
 	numId = LoadBmp("images/num.bmp");
+	pacmanId = LoadBmp("images/pacman.bmp");
+	fieldId = LoadBmp("images/field.bmp");
 
 
 	// ÉQÅ[ÉÄÉãÅ[Év

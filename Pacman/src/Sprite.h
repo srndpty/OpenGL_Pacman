@@ -16,7 +16,7 @@
 extern Shader shader;
 
 // base class for sprite object
-template<int VERTS_COUNT>
+template<int VERTS_COUNT = 4>
 class Sprite
 {
 public:
@@ -83,6 +83,15 @@ public:
 		{
 			color[i] = col;
 		}
+	}
+
+	// UV‚ð‘S‘Ì‚É‚·‚é
+	void ResetUv()
+	{
+		uv[0] = { 0, 0 };
+		uv[1] = { 1, 0 };
+		uv[2] = { 1, 1 };
+		uv[3] = { 0, 1 };
 	}
 
 public:
