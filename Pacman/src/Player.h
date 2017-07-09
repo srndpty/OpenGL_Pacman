@@ -23,6 +23,7 @@ public:
 
 private:
 	Vec2i mChipIndex;
+	Vec2i mPos;
 	Direction mDirection;
 	Vec2f mMoveSpeed;
 

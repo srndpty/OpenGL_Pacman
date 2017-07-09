@@ -18,7 +18,7 @@ FieldChip::~FieldChip()
 
 void FieldChip::Initialize(const Vec2f & aPos, const Vec2f & aSize)
 {
-	Sprite::Initialize(aPos, aSize);
+	Sprite::InitSpriteInfo(aPos, aSize);
 	RefreshUv(0);
 }
 

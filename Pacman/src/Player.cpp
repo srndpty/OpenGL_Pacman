@@ -3,7 +3,8 @@
 
 Player::Player()
 {
-	Initialize(Vec2f{ 0, 0 }, FieldChip::SIZE);
+	mPos = { 5, 10 };
+	InitSpriteInfo(Vec2f{ 0, 0 }, FieldChip::SIZE);
 	RefreshUv(0, 0);
 	SetNextDirection(Direction::Up);
 	ChangeDirection();

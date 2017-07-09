@@ -32,7 +32,7 @@ public:
 		: pos(aPos)
 		, size(aSize)
 	{
-		Initialize(aPos, aSize);
+		InitSpriteInfo(aPos, aSize);
 	}
 
 	// ctor init color
@@ -45,7 +45,7 @@ public:
 	virtual ~Sprite() = default;
 
 	/// normal
-	void Initialize(const Vec2f& aPos, const Vec2f& aSize)
+	void InitSpriteInfo(const Vec2f& aPos, const Vec2f& aSize)
 	{
 		pos = aPos;
 		size = aSize;
