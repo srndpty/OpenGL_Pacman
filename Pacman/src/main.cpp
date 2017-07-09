@@ -19,6 +19,8 @@
 #include "Billboard.h"
 
 // game specific headers
+#include "Game.h"
+
 
 
 #pragma comment(lib, "opengl32.lib")
@@ -36,13 +38,14 @@ namespace
 		Gameover
 	};
 
-	const char* GAME_TITLE = "Reversi";
+	const char* GAME_TITLE = "Pacman";
 
 	// window
 	GLFWwindow* window = nullptr;
 
 	// main game
 	GameState gameState = GameState::Init;
+	std::unique_ptr<Game> game = std::make_unique<Game>();
 
 	auto scoreDispBlack = std::make_unique<NumDisp<2>>(Vec2f{ +0.5f, 0.4f });
 	auto scoreDispWhite = std::make_unique<NumDisp<2>>(Vec2f{ +0.5f, 0.2f });
@@ -127,11 +130,11 @@ void Draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearDepth(1.0);
 
-	scoreDispBlack->Draw(numId);
-	scoreDispWhite->Draw(numId);
+	//scoreDispBlack->Draw(numId);
+	//scoreDispWhite->Draw(numId);
 
-	test0->Draw(pacmanId);
-	test1->Draw(fieldId);
+	game->Draw();
+
 }
 
 //----------------------------------------
@@ -173,6 +176,7 @@ int LibInit()
 void Init()
 {
 	gameState = GameState::Main;
+	game->SetTexId(numId, pacmanId, fieldId);
 	std::cout << "Game Start!\n";
 }
 

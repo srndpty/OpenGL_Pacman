@@ -32,12 +32,7 @@ public:
 		: pos(aPos)
 		, size(aSize)
 	{
-		vertex[0] = geom[0] = { -aSize.x / 2, +aSize.y / 2 };
-		vertex[1] = geom[1] = { +aSize.x / 2, +aSize.y / 2 };
-		vertex[2] = geom[2] = { +aSize.x / 2, -aSize.y / 2 };
-		vertex[3] = geom[3] = { -aSize.x / 2, -aSize.y / 2 };
-
-		SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+		Initialize(aPos, aSize);
 	}
 
 	// ctor init color
@@ -50,6 +45,19 @@ public:
 	virtual ~Sprite() = default;
 
 	/// normal
+	void Initialize(const Vec2f& aPos, const Vec2f& aSize)
+	{
+		pos = aPos;
+		size = aSize;
+
+		vertex[0] = geom[0] = { -aSize.x / 2, +aSize.y / 2 };
+		vertex[1] = geom[1] = { +aSize.x / 2, +aSize.y / 2 };
+		vertex[2] = geom[2] = { +aSize.x / 2, -aSize.y / 2 };
+		vertex[3] = geom[3] = { -aSize.x / 2, -aSize.y / 2 };
+
+		SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+	}
+
 	// ï`âÊ
 	// NOTE: linmath.h Ç™non-constÇ»vec4[]Ç»Ç«ÇóvãÅÇ∑ÇÈÇÃÇ≈ÅAÇ±ÇÃä÷êîé©ëÃÇconstÇ…Ç≈Ç´Ç»Ç¢
 	void Draw(int texId)

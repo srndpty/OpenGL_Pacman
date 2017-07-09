@@ -151,6 +151,9 @@
   <ItemGroup>
     <ClInclude Include="src\Billboard.h" />
     <ClInclude Include="src\Def.h" />
+    <ClInclude Include="src\Field.h" />
+    <ClInclude Include="src\FieldChip.h" />
+    <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\glad\glad.h" />
     <ClInclude Include="src\glad\KHR\khrplatform.h" />
     <ClInclude Include="src\GLFW\glfw3.h" />
@@ -168,6 +171,9 @@
     <ClInclude Include="src\Vec4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Field.cpp" />
+    <ClCompile Include="src\FieldChip.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\glad\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Random.cpp" />
