@@ -9,6 +9,8 @@ class FieldChip : public Sprite<4>
 {
 public:
 	static constexpr int CHIP_MAX = 4;
+	static constexpr float SIDE_LENGTH = 0.1f;
+	static constexpr Vec2f SIZE = { SIDE_LENGTH, SIDE_LENGTH };
 
 private:
 	int mChipId;

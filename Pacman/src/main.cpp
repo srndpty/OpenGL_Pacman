@@ -184,6 +184,8 @@ void Init()
 // メインの処理
 void GameMain()
 {
+	// ゲーム更新
+	game->Tick();
 
 	// ゲーム中もRで最初から
 	if (input.mKeyStates[GLFW_KEY_R].pressed)

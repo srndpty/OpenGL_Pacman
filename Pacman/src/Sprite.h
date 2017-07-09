@@ -50,6 +50,7 @@ public:
 		pos = aPos;
 		size = aSize;
 
+		// left bottom origined - counter clockwise
 		vertex[0] = geom[0] = { -aSize.x / 2, +aSize.y / 2 };
 		vertex[1] = geom[1] = { +aSize.x / 2, +aSize.y / 2 };
 		vertex[2] = geom[2] = { +aSize.x / 2, -aSize.y / 2 };
@@ -97,9 +98,9 @@ public:
 	void ResetUv()
 	{
 		uv[0] = { 0, 0 };
-		uv[1] = { 1, 0 };
+		uv[1] = { 0, 1 };
 		uv[2] = { 1, 1 };
-		uv[3] = { 0, 1 };
+		uv[3] = { 1, 0 };
 	}
 
 public:
