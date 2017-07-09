@@ -109,3 +109,13 @@ bool Field::IsMovable(const Vec2i& v) const
 {
 	return IsMovable(v.x, v.y);
 }
+
+void Field::SetType(const int x, const int y, FieldChip::Type type)
+{
+	mFieldChips[y][x].SetType(type);
+}
+
+void Field::SetType(const Vec2i & v, FieldChip::Type type)
+{
+	SetType(v.x, v.y, type);
+}

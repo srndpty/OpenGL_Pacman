@@ -69,6 +69,10 @@ void Player::UpdatePosition()
 
 	std::cout << "position updated (" << mPos.x << ", " << mPos.y << ")\n";
 
+	// アイテム取得
+	mField.SetType(mPos, FieldChip::Type::Empty);
+
+	// 厳密に位置調整
 	pos.x = Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x;
 	pos.y = Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y;
 }

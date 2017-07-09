@@ -37,5 +37,6 @@ public:
 
 	/// get set
 	Type GetType() const;
+	void SetType(Type type);
 };
 

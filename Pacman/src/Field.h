@@ -25,6 +25,8 @@ public:
 	void Draw(const int id);
 	bool IsMovable(const int x, const int y) const;
 	bool IsMovable(const Vec2i& v) const;
+	void SetType(const int x, const int y, FieldChip::Type type);
+	void SetType(const Vec2i& v, FieldChip::Type type);
 
 
 private:

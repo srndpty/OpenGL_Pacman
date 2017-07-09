@@ -40,3 +40,9 @@ FieldChip::Type FieldChip::GetType() const
 {
 	return static_cast<Type>(mChipId);
 }
+
+void FieldChip::SetType(Type type)
+{
+	mChipId = static_cast<int>(type);
+	RefreshUv(mChipId);
+}
