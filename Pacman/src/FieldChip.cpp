@@ -26,6 +26,10 @@ void FieldChip::RefreshUv(const int index)
 {
 	assert(0 <= index);
 	assert(index < CHIP_MAX);
+
+	mChipId = index;
+
+	// uv
 	uv[0] = { 1.0f / CHIP_MAX * index,       0.0f };
 	uv[1] = { 1.0f / CHIP_MAX * index,       1.0f };
 	uv[2] = { 1.0f / CHIP_MAX * (index + 1), 1.0f };

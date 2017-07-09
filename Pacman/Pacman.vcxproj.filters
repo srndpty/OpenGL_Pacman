@@ -25,9 +25,6 @@
     <ClInclude Include="src\linmath.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Loader.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\NumDisp.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -62,6 +59,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Field.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BmpLoader.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

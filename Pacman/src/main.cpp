@@ -13,7 +13,7 @@
 #include "Def.h"
 #include "Input.h"
 #include "Sprite.h"
-#include "Loader.h"
+#include "BmpLoader.h"
 #include "Random.h"
 #include "NumDisp.h"
 #include "Billboard.h"

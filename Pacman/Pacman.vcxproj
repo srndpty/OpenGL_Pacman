@@ -160,7 +160,7 @@
     <ClInclude Include="src\GLFW\glfw3native.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\linmath.h" />
-    <ClInclude Include="src\Loader.h" />
+    <ClInclude Include="src\BmpLoader.h" />
     <ClInclude Include="src\NumDisp.h" />
     <ClInclude Include="src\NumTex.h" />
     <ClInclude Include="src\Random.h" />

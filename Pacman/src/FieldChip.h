@@ -10,6 +10,9 @@ class FieldChip : public Sprite<4>
 public:
 	static constexpr int CHIP_MAX = 4;
 
+private:
+	int mChipId;
+
 public:
 	/// special
 	FieldChip();
