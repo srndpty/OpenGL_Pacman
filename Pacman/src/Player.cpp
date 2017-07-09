@@ -2,9 +2,16 @@
 #include "FieldChip.h"
 #include "Field.h"
 
-Player::Player()
+namespace 
 {
-	mPos = { 5, 5 };
+	// YÇÕè„Ç™é·Ç¢
+	Vec2i OFFSET_LIST[] = { {0, -1}, {0, +1}, {-1, 0}, {1, 0} };
+}
+
+Player::Player(Field & field)
+	: mField(field)
+{
+	mPos = { 1, 4 };
 	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
 	RefreshUv(0, 0);
 	mDirection = Direction::Up;
@@ -23,13 +30,20 @@ void Player::Tick()
 	RefreshUv(mCounter / ANIM_INTERVAL % SHEET_COUNT.x, mChipIndex.y);
 
 	// à⁄ìÆ
-	pos += mMoveSpeed;
-
-	if (IsPassedOverDestination())
+	if (mField.IsMovable(mPos + OFFSET_LIST[static_cast<int>(mDirection)]))
 	{
-		UpdatePosition();
+		pos += mMoveSpeed;
+		if (IsPassedOverDestination())
+		{
+			UpdatePosition();
+			ChangeDirection();
+		}
+	}
+	else
+	{
 		ChangeDirection();
 	}
+
 }
 
 void Player::UpdatePosition()
@@ -84,35 +98,71 @@ bool Player::IsPassedOverDestination() const
 void Player::SetNextDirection(Direction dir)
 {
 	mNextDirection = dir;
-	//ChangeDirection();
 }
 
 void Player::ChangeDirection()
 {
+	Vec2i offset;
+
 	switch (mNextDirection)
 	{
 	case Player::Direction::Up:
-		mMoveSpeed = { 0, +MOVE_SPEED };
-		RefreshUv(mChipIndex.x, 0);
+		offset = { 0, +1 };
+		if (mField.IsMovable(mPos + -offset))
+		{
+			mDirection = mNextDirection;
+			RefreshUv(mChipIndex.x, 0);
+			mMoveSpeed = offset.AsFloat() * MOVE_SPEED;
+		}
+		else
+		{
+			offset = { 0, 0 };
+		}
 		break;
 	case Player::Direction::Down:
-		mMoveSpeed = { 0, -MOVE_SPEED };
-		RefreshUv(mChipIndex.x, 1);
+		offset = { 0, -1 };
+		if (mField.IsMovable(mPos + -offset))
+		{
+			mDirection = mNextDirection;
+			RefreshUv(mChipIndex.x, 1);
+			mMoveSpeed = offset.AsFloat() * MOVE_SPEED;
+		}
+		else
+		{
+			offset = { 0, 0 };
+		}
 		break;
 	case Player::Direction::Left:
-		mMoveSpeed = { -MOVE_SPEED, 0 };
-		RefreshUv(mChipIndex.x, 2);
+		offset = { -1, 0 };
+		if (mField.IsMovable(mPos + offset))
+		{
+			mDirection = mNextDirection;
+			RefreshUv(mChipIndex.x, 2);
+			mMoveSpeed = offset.AsFloat() * MOVE_SPEED;
+		}
+		else
+		{
+			offset = { 0, 0 };
+		}
 		break;
 	case Player::Direction::Right:
-		mMoveSpeed = { +MOVE_SPEED, 0 };
-		RefreshUv(mChipIndex.x, 3);
+		offset = { +1, 0 };
+		if (mField.IsMovable(mPos + offset))
+		{
+			mDirection = mNextDirection;
+			RefreshUv(mChipIndex.x, 3);
+			mMoveSpeed = offset.AsFloat() * MOVE_SPEED;
+		}
+		else
+		{
+			offset = { 0, 0 };
+		}
 		break;
 	default:
 		SHOULD_NOT_REACH_HERE();
 		break;
 	}
 
-	mDirection = mNextDirection;
 }
 
 void Player::RefreshUv(const int horizontal, const int vertical)
@@ -129,4 +179,9 @@ void Player::RefreshUv(const int horizontal, const int vertical)
 	uv[1] = { 1.0f / SHEET_COUNT.x * (horizontal + 1), 1 - 1.0f / SHEET_COUNT.y * (vertical + 0) };
 	uv[2] = { 1.0f / SHEET_COUNT.x * (horizontal + 1), 1 - 1.0f / SHEET_COUNT.y * (vertical + 1) };
 	uv[3] = { 1.0f / SHEET_COUNT.x * (horizontal + 0), 1 - 1.0f / SHEET_COUNT.y * (vertical + 1) };
+}
+
+void Player::SetFieldRef(const Field & field)
+{
+	mField = field;
 }

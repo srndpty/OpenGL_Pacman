@@ -3,6 +3,8 @@
 #include "Input.h"
 
 Game::Game()
+	: mField(std::make_unique<Field>())
+	, mPlayer(std::make_unique<Player>(*mField))
 {
 }
 
@@ -22,27 +24,27 @@ void Game::Tick()
 	// “ü—Í§Œä
 	if (input.GetButtomDown(GLFW_KEY_W))
 	{
-		mPlayer.SetNextDirection(Player::Direction::Up);
+		mPlayer->SetNextDirection(Player::Direction::Up);
 	}
 	else if (input.GetButtomDown(GLFW_KEY_S))
 	{
-		mPlayer.SetNextDirection(Player::Direction::Down);
+		mPlayer->SetNextDirection(Player::Direction::Down);
 	}
 	else if (input.GetButtomDown(GLFW_KEY_A))
 	{
-		mPlayer.SetNextDirection(Player::Direction::Left);
+		mPlayer->SetNextDirection(Player::Direction::Left);
 	}
 	else if (input.GetButtomDown(GLFW_KEY_D))
 	{
-		mPlayer.SetNextDirection(Player::Direction::Right);
+		mPlayer->SetNextDirection(Player::Direction::Right);
 	}
 
 	// ƒvƒŒƒCƒ„[ˆÚ“®
-	mPlayer.Tick();
+	mPlayer->Tick();
 }
 
 void Game::Draw()
 {
-	mField.Draw(mFieldId);
-	mPlayer.Draw(mPacmanId);
+	mField->Draw(mFieldId);
+	mPlayer->Draw(mPacmanId);
 }

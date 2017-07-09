@@ -98,3 +98,14 @@ void Field::Draw(const int id)
 	}
 
 }
+
+bool Field::IsMovable(const int x, const int y) const
+{
+	auto type = mFieldChips[y][x].GetType();
+	return type == FieldChip::Type::Empty || type == FieldChip::Type::Food;
+}
+
+bool Field::IsMovable(const Vec2i& v) const
+{
+	return IsMovable(v.x, v.y);
+}

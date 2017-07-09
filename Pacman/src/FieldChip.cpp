@@ -35,3 +35,8 @@ void FieldChip::RefreshUv(const int index)
 	uv[2] = { 1.0f / CHIP_MAX * (index + 1), 1.0f };
 	uv[3] = { 1.0f / CHIP_MAX * (index + 1), 0.0f };
 }
+
+FieldChip::Type FieldChip::GetType() const
+{
+	return static_cast<Type>(mChipId);
+}

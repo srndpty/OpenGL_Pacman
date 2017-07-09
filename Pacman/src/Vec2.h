@@ -27,10 +27,35 @@ public:
 	{
 	}
 
+	Vec2(const Vec2& v)
+		: x(v.x)
+		, y(v.y)
+	{
+	}
+
+	// Vec2f to Vec2i conversion
+	template<typename U>
+	Vec2(const Vec2<U>& v)
+		: x(v.x)
+		, y(v.y)
+	{
+	}
+
+
 	// dtor
 	~Vec2() = default;
 
 
+	// cast
+	Vec2<float> AsFloat() const
+	{
+		return Vec2<float>(static_cast<float>(x), static_cast<float>(y));
+	}
+
+	Vec2<int> AsInt() const
+	{
+		return Vec2<int>(static_cast<int>(x), static_cast<int>(y));
+	}
 
 	// plus
 	Vec2 operator+(const Vec2& a)
@@ -42,6 +67,12 @@ public:
 	const Vec2 operator+(const Vec2& a) const
 	{
 		return { x + a.x, y + a.y };
+	}
+
+	// unary minus
+	Vec2 operator-()
+	{
+		return{ -x, -y };
 	}
 
 	// minus
@@ -62,7 +93,7 @@ public:
 		return{ x * a, y * a };
 	}
 
-	// multiply single
+	// multiply single const
 	const Vec2 operator*(T a) const
 	{
 		return{ x * a, y * a };
@@ -140,7 +171,6 @@ public:
 	{
 		return !(*this == a);
 	}
-
 };
 
 // エイリアスアクセスを提供

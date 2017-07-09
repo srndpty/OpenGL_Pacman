@@ -5,6 +5,7 @@
 
 #include "Vec2.h"
 #include "Character.h"
+#include "Field.h"
 
 class Player : public Character
 {
@@ -27,10 +28,12 @@ private:
 	Direction mDirection;
 	Direction mNextDirection;
 	Vec2f mMoveSpeed;
+	Field& mField;
 
 public:
 	/// special
-	Player();
+	Player() = delete;
+	Player(Field& field);
 	~Player();
 
 	/// override
@@ -42,6 +45,9 @@ public:
 	void SetNextDirection(Direction dir);
 	void ChangeDirection();
 	void RefreshUv(const int horizontal, const int vertical);
+
+	/// get set
+	void SetFieldRef(const Field& field);
 
 private:
 

@@ -3,14 +3,16 @@
 
 #pragma once
 
+#include <memory>
+
 #include "Field.h"
 #include "Player.h"
 
 class Game
 {
 private:
-	Field mField;
-	Player mPlayer;
+	std::unique_ptr<Field> mField;
+	std::unique_ptr<Player> mPlayer;
 
 public:
 	/// special
