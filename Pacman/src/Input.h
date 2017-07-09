@@ -66,3 +66,5 @@ public:
 		return mKeyStates[key].lastPressed == false && mKeyStates[key].pressed == true;
 	}
 };
+
+extern Input input;
