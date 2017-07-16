@@ -13,11 +13,12 @@ Game::~Game()
 {
 }
 
-void Game::SetTexId(const int numId, const int pacmanId, const int fieldId)
+void Game::SetTexId(const int numId, const int pacmanId, const int fieldId, const int enemyId)
 {
-	mNumId = numId;
-	mPacmanId = pacmanId;
-	mFieldId = fieldId;
+	mTextureId[TEXID_DIGIT] = numId;
+	mTextureId[TEXID_PACMAN] = pacmanId;
+	mTextureId[TEXID_FIELD] = fieldId;
+	mTextureId[TEXID_ENEMY] = enemyId;
 }
 
 void Game::Tick()
@@ -53,7 +54,7 @@ void Game::Tick()
 
 void Game::Draw()
 {
-	mField->Draw(mFieldId);
-	mEnemy->Draw(mPacmanId);
-	mPlayer->Draw(mPacmanId);
+	mField->Draw(mTextureId[TEXID_FIELD]);
+	mEnemy->Draw(mTextureId[TEXID_ENEMY]);
+	mPlayer->Draw(mTextureId[TEXID_PACMAN]);
 }

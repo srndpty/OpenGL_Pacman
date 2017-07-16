@@ -59,6 +59,7 @@ namespace
 	// texture ids
 	GLuint pacmanId;
 	GLuint fieldId;
+	GLuint enemyId;
 	GLuint numId;
 }
 
@@ -176,7 +177,7 @@ int LibInit()
 void Init()
 {
 	gameState = GameState::Main;
-	game->SetTexId(numId, pacmanId, fieldId);
+	game->SetTexId(numId, pacmanId, fieldId, enemyId);
 	std::cout << "Game Start!\n";
 }
 
@@ -220,6 +221,7 @@ int main()
 	numId = LoadBmp("images/num.bmp");
 	pacmanId = LoadBmp("images/pacman.bmp");
 	fieldId = LoadBmp("images/field.bmp");
+	enemyId = LoadBmp("images/enemy.bmp");
 
 	float ratio;
 	int width, height;

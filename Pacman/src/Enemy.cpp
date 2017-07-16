@@ -14,6 +14,7 @@ namespace
 Enemy::Enemy(Field& field)
 	: Character(field)
 {
+	mType = TYPE_RED;
 	mPos = { 1, 1 };
 	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
 	RefreshUv(0, 0);
@@ -30,7 +31,7 @@ void Enemy::Tick()
 {
 	++mCounter;
 
-	RefreshUv(mCounter / ANIM_INTERVAL % SHEET_COUNT.x, mChipIndex.y);
+	RefreshUv(mCounter / ANIM_INTERVAL % SHEET_COUNT.x, mType);
 
 	// ˆÚ“®
 	if (mField.IsMovable(mPos + OFFSET_LIST[static_cast<int>(mDirection)]))
@@ -61,7 +62,7 @@ void Enemy::ChangeDirection()
 	if (mField.IsMovable(mPos + offset))
 	{
 		mDirection = mNextDirection;
-		RefreshUv(mChipIndex.x, dir);
+		RefreshUv(mChipIndex.x, mType);
 		mMoveSpeed = Vec2f{ offset.x, -offset.y } * MOVE_SPEED;
 	}
 }

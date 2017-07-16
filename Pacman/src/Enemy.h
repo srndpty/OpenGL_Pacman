@@ -8,9 +8,21 @@
 class Enemy : public Character
 {
 public:
+	enum TYPE
+	{
+		TYPE_RED,
+		TYPE_PINK,
+		TYPE_CYAN,
+		TYPE_ORANGE,
+
+		TYPE_MAX,
+	};
 	static constexpr Vec2i SHEET_COUNT = { 2, 4 };
 	static constexpr int ANIM_INTERVAL = 8;
 	static constexpr float MOVE_SPEED = 0.002f;
+
+private:
+	int mType;
 
 public:
 	Enemy(Field& field);

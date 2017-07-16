@@ -30,7 +30,7 @@ GLuint LoadBmp(const char* filename)
 	if (header[0] != 'B' || header[1] != 'M')
 	{
 		printf("Not a correct BMP file\n");
-		return 0;
+		return -1;
 	}
 	int dataPos = *(int*)&(header[0x0A]);
 	int imageSize = *(int*)&(header[0x22]);
