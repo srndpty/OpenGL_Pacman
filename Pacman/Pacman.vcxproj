@@ -152,6 +152,7 @@
     <ClInclude Include="src\Billboard.h" />
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\Def.h" />
+    <ClInclude Include="src\Enemy.h" />
     <ClInclude Include="src\Field.h" />
     <ClInclude Include="src\FieldChip.h" />
     <ClInclude Include="src\Game.h" />
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\FieldChip.cpp" />
     <ClCompile Include="src\Game.cpp" />
