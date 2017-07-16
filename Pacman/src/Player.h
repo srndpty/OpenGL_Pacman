@@ -20,7 +20,7 @@ public:
 
 	static constexpr Vec2i SHEET_COUNT = { 2, 4 };
 	static constexpr int ANIM_INTERVAL = 8;
-	static constexpr float MOVE_SPEED = 0.002f;
+	static constexpr float MOVE_SPEED = 0.02f;
 
 private:
 	Vec2i mChipIndex;

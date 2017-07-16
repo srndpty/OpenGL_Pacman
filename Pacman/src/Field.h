@@ -27,6 +27,7 @@ public:
 	bool IsMovable(const Vec2i& v) const;
 	void SetType(const int x, const int y, FieldChip::Type type);
 	void SetType(const Vec2i& v, FieldChip::Type type);
+	int GetFoodCount() const;
 
 
 private:

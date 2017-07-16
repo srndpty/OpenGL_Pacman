@@ -119,3 +119,20 @@ void Field::SetType(const Vec2i & v, FieldChip::Type type)
 {
 	SetType(v.x, v.y, type);
 }
+
+int Field::GetFoodCount() const
+{
+	int count = 0;
+	for (size_t i = 0; i < SIZE.y; i++)
+	{
+		for (size_t j = 0; j < SIZE.x; j++)
+		{
+			if (mFieldChips[i][j].GetType() == FieldChip::Type::Food)
+			{
+				++count;
+			}
+		}
+	}
+
+	return count;
+}

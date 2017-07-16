@@ -21,6 +21,12 @@ void Game::SetTexId(const int numId, const int pacmanId, const int fieldId)
 
 void Game::Tick()
 {
+	if (mField->GetFoodCount() == 0)
+	{
+		std::cout << "game clear!\n";
+		return;
+	}
+
 	// “ü—Í§Œä
 	if (input.GetButtomDown(GLFW_KEY_W))
 	{
