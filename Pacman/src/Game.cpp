@@ -5,6 +5,7 @@
 Game::Game()
 	: mField(std::make_unique<Field>())
 	, mPlayer(std::make_unique<Player>(*mField))
+	, mEnemy(std::make_unique<Enemy>(*mField))
 {
 }
 
@@ -46,11 +47,13 @@ void Game::Tick()
 	}
 
 	// ƒvƒŒƒCƒ„[ˆÚ“®
+	mEnemy->Tick();
 	mPlayer->Tick();
 }
 
 void Game::Draw()
 {
 	mField->Draw(mFieldId);
+	mEnemy->Draw(mPacmanId);
 	mPlayer->Draw(mPacmanId);
 }
