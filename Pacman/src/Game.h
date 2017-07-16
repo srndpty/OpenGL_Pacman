@@ -41,6 +41,7 @@ public:
 	~Game();
 
 	/// normal
+	void Initialize();
 	void SetTexId(const int numId, const int pacmanId, const int fieldId, const int enemyId);
 	void Tick();
 	void Draw();

@@ -11,12 +11,7 @@ namespace
 Player::Player(Field & field)
 	: Character(field)
 {
-	mPos = { 1, 4 };
-	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
-	RefreshUv(0, 0);
-	mDirection = Direction::Up;
-	SetNextDirection(Direction::Up);
-	ChangeDirection();
+	Initialize();
 }
 
 Player::~Player()
@@ -46,6 +41,16 @@ void Player::Tick()
 
 	// プレイヤーはアイテムを取得する
 	GetItem();
+}
+
+void Player::Initialize()
+{
+	mPos = { 1, 4 };
+	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
+	RefreshUv(0, 0);
+	mDirection = Direction::Up;
+	SetNextDirection(Direction::Up);
+	ChangeDirection();
 }
 
 

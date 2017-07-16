@@ -13,6 +13,13 @@ Game::~Game()
 {
 }
 
+void Game::Initialize()
+{
+	mField->Initialize();
+	mPlayer->Initialize();
+	mEnemy->Initialize();
+}
+
 void Game::SetTexId(const int numId, const int pacmanId, const int fieldId, const int enemyId)
 {
 	mTextureId[TEXID_DIGIT] = numId;

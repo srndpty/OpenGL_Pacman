@@ -22,6 +22,7 @@ public:
 
 	/// override
 	void Tick() override;
+	void Initialize() override;
 
 	/// normal
 

@@ -7,6 +7,15 @@
 
 Field::Field()
 {
+	Initialize();
+}
+
+Field::~Field()
+{
+}
+
+void Field::Initialize()
+{
 	// ƒ`ƒbƒv‚Ì‰Šú‰»
 	for (size_t i = 0; i < SIZE.y; i++)
 	{
@@ -18,10 +27,6 @@ Field::Field()
 	}
 
 	InitFromFile("res/field1.txt");
-}
-
-Field::~Field()
-{
 }
 
 void Field::InitFromFile(const char * filename)

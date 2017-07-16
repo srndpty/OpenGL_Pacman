@@ -14,13 +14,7 @@ namespace
 Enemy::Enemy(Field& field)
 	: Character(field)
 {
-	mType = TYPE_RED;
-	mPos = { 1, 1 };
-	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
-	RefreshUv(0, 0);
-	mDirection = Direction::Down;
-	SetNextDirection(Direction::Down);
-	ChangeDirection();
+	Initialize();
 }
 
 Enemy::~Enemy()
@@ -53,6 +47,17 @@ void Enemy::Tick()
 		SetRandomDirection();
 		ChangeDirection();
 	}
+}
+
+void Enemy::Initialize()
+{
+	mType = TYPE_RED;
+	mPos = { 1, 1 };
+	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
+	RefreshUv(0, 0);
+	mDirection = Direction::Down;
+	SetNextDirection(Direction::Down);
+	ChangeDirection();
 }
 
 void Enemy::ChangeDirection()

@@ -176,8 +176,8 @@ int LibInit()
 // ‰Šú‰»
 void Init()
 {
+	game->Initialize();
 	gameState = GameState::Main;
-	game->SetTexId(numId, pacmanId, fieldId, enemyId);
 	std::cout << "Game Start!\n";
 }
 
@@ -222,6 +222,7 @@ int main()
 	pacmanId = LoadBmp("images/pacman.bmp");
 	fieldId = LoadBmp("images/field.bmp");
 	enemyId = LoadBmp("images/enemy.bmp");
+	game->SetTexId(numId, pacmanId, fieldId, enemyId);
 
 	float ratio;
 	int width, height;
