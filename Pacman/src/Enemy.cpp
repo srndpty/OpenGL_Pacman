@@ -14,7 +14,7 @@ namespace
 Enemy::Enemy(Field& field)
 	: Character(field)
 {
-	Initialize();
+	//Initialize(0);
 }
 
 Enemy::~Enemy()
@@ -49,9 +49,9 @@ void Enemy::Tick()
 	}
 }
 
-void Enemy::Initialize()
+void Enemy::Initialize(const int type)
 {
-	mType = TYPE_RED;
+	mType = type;
 	mPos = mField.GetRandomPlacablePos();
 	//mPos = { 1, 1 };
 	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);

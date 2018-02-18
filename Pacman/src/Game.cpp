@@ -23,7 +23,11 @@ void Game::Initialize()
 {
 	mField->Initialize();
 	mPlayer->Initialize();
-	std::for_each(mEnemy.begin(), mEnemy.end(), [](const auto& e) { e->Initialize(); });
+	for (size_t i = 0; i < mEnemy.size(); i++)
+	{
+		mEnemy[i]->Initialize(i);
+	}
+	//std::for_each(mEnemy.begin(), mEnemy.end(), [](const auto& e) { e->Initialize(); });
 	//mEnemy->Initialize();
 }
 

@@ -35,7 +35,7 @@ public:
 
 	/// normal
 	virtual void Tick() = 0;
-	virtual void Initialize() = 0;
+	//virtual void Initialize() = 0;
 	
 	void SetNextDirection(Direction dir);
 

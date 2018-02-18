@@ -30,7 +30,7 @@ public:
 
 	/// override
 	void Tick() override;
-	void Initialize() override;
+	void Initialize(const int type);
 
 	/// normal
 
