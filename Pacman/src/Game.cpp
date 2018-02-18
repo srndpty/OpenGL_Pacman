@@ -1,4 +1,6 @@
 
+#include <algorithm>
+
 #include "Game.h"
 #include "Input.h"
 #include "Collision.h"
@@ -6,8 +8,11 @@
 Game::Game()
 	: mField(std::make_unique<Field>())
 	, mPlayer(std::make_unique<Player>(*mField))
-	, mEnemy(std::make_unique<Enemy>(*mField))
 {
+	for (size_t i = 0; i < ENEMY_COUNT; i++)
+	{
+		mEnemy.push_back(std::make_unique<Enemy>(*mField));
+	}
 }
 
 Game::~Game()
@@ -18,7 +23,8 @@ void Game::Initialize()
 {
 	mField->Initialize();
 	mPlayer->Initialize();
-	mEnemy->Initialize();
+	std::for_each(mEnemy.begin(), mEnemy.end(), [](const auto& e) { e->Initialize(); });
+	//mEnemy->Initialize();
 }
 
 void Game::SetTexId(const int numId, const int pacmanId, const int fieldId, const int enemyId)
@@ -39,10 +45,13 @@ bool Game::Tick()
 	}
 
 	// 同じ座標だったらゲームオーバー
-	if (Collision::IsHitSqSq(mEnemy.get(), mPlayer.get()))
+	for (const auto& elem : mEnemy)
 	{
-		std::cout << "game over! press R to restart.\n";
-		return true;
+		if (Collision::IsHitSqSq(elem.get(), mPlayer.get()))
+		{
+			std::cout << "game over! press R to restart.\n";
+			return true;
+		}
 	}
 
 	// 入力制御
@@ -64,7 +73,10 @@ bool Game::Tick()
 	}
 
 	// プレイヤー移動
-	mEnemy->Tick();
+	for (const auto& elem : mEnemy)
+	{
+		elem->Tick();
+	}
 	mPlayer->Tick();
 
 	return false;
@@ -73,6 +85,9 @@ bool Game::Tick()
 void Game::Draw()
 {
 	mField->Draw(mTextureId[TEXID_FIELD]);
-	mEnemy->Draw(mTextureId[TEXID_ENEMY]);
+	for (const auto& elem : mEnemy)
+	{
+		elem->Draw(mTextureId[TEXID_ENEMY]);
+	}
 	mPlayer->Draw(mTextureId[TEXID_PACMAN]);
 }

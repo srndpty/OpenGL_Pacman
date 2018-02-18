@@ -4,6 +4,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "Field.h"
 #include "Player.h"
@@ -28,7 +29,7 @@ public:
 private:
 	std::unique_ptr<Field> mField;
 	std::unique_ptr<Player> mPlayer;
-	std::unique_ptr<Enemy> mEnemy;
+	std::vector<std::unique_ptr<Enemy>> mEnemy;
 	int mTextureId[TEXID_MAX];
 
 	int mNumId;
