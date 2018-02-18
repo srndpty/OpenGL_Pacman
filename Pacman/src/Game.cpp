@@ -53,7 +53,7 @@ bool Game::Tick()
 	// 同じ座標だったらゲームオーバー
 	for (const auto& elem : mEnemy)
 	{
-		if (false&&Collision::IsHitSqSq(elem.get(), mPlayer.get()))
+		if (Collision::IsHitSqSq(elem.get(), mPlayer.get()))
 		{
 			std::cout << "game over! press R to restart.\n";
 			return true;
