@@ -52,7 +52,8 @@ void Enemy::Tick()
 void Enemy::Initialize()
 {
 	mType = TYPE_RED;
-	mPos = { 1, 1 };
+	mPos = mField.GetRandomPlacablePos();
+	//mPos = { 1, 1 };
 	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
 	RefreshUv(0, 0);
 	mDirection = Direction::Down;

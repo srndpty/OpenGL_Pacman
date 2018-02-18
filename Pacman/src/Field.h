@@ -29,6 +29,7 @@ public:
 	void SetType(const int x, const int y, FieldChip::Type type);
 	void SetType(const Vec2i& v, FieldChip::Type type);
 	int GetFoodCount() const;
+	Vec2i GetRandomPlacablePos();
 
 
 private:

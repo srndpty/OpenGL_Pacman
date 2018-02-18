@@ -70,8 +70,10 @@
     <ClInclude Include="src\Player.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy.h" />
     <ClInclude Include="src\Collision.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
@@ -106,8 +108,10 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Collision.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

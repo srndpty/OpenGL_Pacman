@@ -4,6 +4,9 @@
 #include <sstream>
 
 #include "Field.h"
+#include "Random.h"
+
+extern Random random;
 
 Field::Field()
 {
@@ -140,4 +143,16 @@ int Field::GetFoodCount() const
 	}
 
 	return count;
+}
+
+Vec2i Field::GetRandomPlacablePos()
+{
+	int x, y;
+	do
+	{
+		x = random(SIZE.x);
+		y = random(SIZE.y);
+	} while (!IsMovable(x, y));
+
+	return Vec2i(x, y);
 }

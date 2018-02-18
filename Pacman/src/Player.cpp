@@ -45,7 +45,8 @@ void Player::Tick()
 
 void Player::Initialize()
 {
-	mPos = { 1, 4 };
+	mPos = mField.GetRandomPlacablePos();
+	//mPos = { 1, 4 };
 	InitSpriteInfo(Vec2f{ Field::BASE_POS.x + FieldChip::SIZE.x * mPos.x, Field::BASE_POS.y - FieldChip::SIZE.y * mPos.y }, FieldChip::SIZE);
 	RefreshUv(0, 0);
 	mDirection = Direction::Up;
