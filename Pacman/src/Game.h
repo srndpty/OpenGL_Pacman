@@ -43,7 +43,7 @@ public:
 	/// normal
 	void Initialize();
 	void SetTexId(const int numId, const int pacmanId, const int fieldId, const int enemyId);
-	void Tick();
+	bool Tick();
 	void Draw();
 
 };

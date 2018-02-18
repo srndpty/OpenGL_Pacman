@@ -48,13 +48,13 @@ public:
 	void InitSpriteInfo(const Vec2f& aPos, const Vec2f& aSize)
 	{
 		pos = aPos;
-		size = aSize * 2;
+		size = aSize;
 
 		// left bottom origined - counter clockwise
-		vertex[0] = geom[0] = { -size.x / 2, +size.y / 2 };
-		vertex[1] = geom[1] = { +size.x / 2, +size.y / 2 };
-		vertex[2] = geom[2] = { +size.x / 2, -size.y / 2 };
-		vertex[3] = geom[3] = { -size.x / 2, -size.y / 2 };
+		vertex[0] = geom[0] = { -size.x, +size.y };
+		vertex[1] = geom[1] = { +size.x, +size.y };
+		vertex[2] = geom[2] = { +size.x, -size.y };
+		vertex[3] = geom[3] = { -size.x, -size.y };
 
 		SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 	}

@@ -1,6 +1,7 @@
 
 #include "Game.h"
 #include "Input.h"
+#include "Collision.h"
 
 Game::Game()
 	: mField(std::make_unique<Field>())
@@ -28,12 +29,20 @@ void Game::SetTexId(const int numId, const int pacmanId, const int fieldId, cons
 	mTextureId[TEXID_ENEMY] = enemyId;
 }
 
-void Game::Tick()
+// ret: clear true
+bool Game::Tick()
 {
 	if (mField->GetFoodCount() == 0)
 	{
-		std::cout << "game clear!\n";
-		return;
+		std::cout << "game clear! press R to restart.\n";
+		return true;
+	}
+
+	// 同じ座標だったらゲームオーバー
+	if (Collision::IsHitSqSq(mEnemy.get(), mPlayer.get()))
+	{
+		std::cout << "game over! press R to restart.\n";
+		return true;
 	}
 
 	// 入力制御
@@ -57,6 +66,8 @@ void Game::Tick()
 	// プレイヤー移動
 	mEnemy->Tick();
 	mPlayer->Tick();
+
+	return false;
 }
 
 void Game::Draw()

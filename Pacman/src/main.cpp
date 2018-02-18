@@ -186,7 +186,10 @@ void Init()
 void GameMain()
 {
 	// ゲーム更新
-	game->Tick();
+	if (game->Tick())
+	{
+		gameState = GameState::Gameover;
+	}
 
 	// ゲーム中もRで最初から
 	if (input.mKeyStates[GLFW_KEY_R].pressed)
