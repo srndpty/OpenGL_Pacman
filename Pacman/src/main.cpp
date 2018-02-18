@@ -35,10 +35,12 @@ namespace
 	{
 		Init,
 		Main,
-		Gameover
+		Gameover,
+		GameClear,
 	};
 
 	const char* GAME_TITLE = "Pacman";
+	const int STAGE_MAX = 3;
 
 	// window
 	GLFWwindow* window = nullptr;
@@ -51,6 +53,7 @@ namespace
 	auto scoreDispWhite = std::make_unique<NumDisp<2>>(Vec2f{ +0.5f, 0.2f });
 	bool firstGameOver = true;
 	int scorePoint = 0;
+	int stage = 0;
 
 	// test
 	std::unique_ptr<Billboard> test0 = std::make_unique<Billboard>(Vec2f{ 0, -0.3f }, Vec2f{ 0.2f, 0.2f });
@@ -176,7 +179,7 @@ int LibInit()
 // 初期化
 void Init()
 {
-	game->Initialize();
+	game->Initialize(stage);
 	gameState = GameState::Main;
 	std::cout << "Game Start!\n";
 }
@@ -188,7 +191,22 @@ void GameMain()
 	// ゲーム更新
 	if (game->Tick())
 	{
-		gameState = GameState::Gameover;
+		if (game->IsCleared())
+		{
+			stage++;
+			if (stage >= STAGE_MAX)
+			{
+				gameState = GameState::GameClear;
+			}
+			else
+			{
+				gameState = GameState::Init;
+			}
+		}
+		else
+		{
+			gameState = GameState::Gameover;
+		}
 	}
 
 	// ゲーム中もRで最初から
@@ -204,6 +222,18 @@ void GameOver()
 {
 	if (input.mKeyStates[GLFW_KEY_R].pressed)
 	{
+		stage = 0;
+		gameState = GameState::Init;
+	}
+}
+
+//----------------------------------------
+// ゲームクリア
+void GameClear()
+{
+	if (input.mKeyStates[GLFW_KEY_R].pressed)
+	{
+		stage = 0;
 		gameState = GameState::Init;
 	}
 }
@@ -247,6 +277,9 @@ int main()
 			break;
 		case GameState::Gameover:
 			GameOver();
+			break;
+		case GameState::GameClear:
+			GameClear();
 			break;
 		default:
 			std::cout << "unknown state\n";

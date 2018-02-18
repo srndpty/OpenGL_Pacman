@@ -19,9 +19,10 @@ Game::~Game()
 {
 }
 
-void Game::Initialize()
+void Game::Initialize(const int stage)
 {
-	mField->Initialize();
+	mIsCleared = false;
+	mField->Initialize(stage);
 	mPlayer->Initialize();
 	for (size_t i = 0; i < mEnemy.size(); i++)
 	{
@@ -44,14 +45,15 @@ bool Game::Tick()
 {
 	if (mField->GetFoodCount() == 0)
 	{
-		std::cout << "game clear! press R to restart.\n";
+		mIsCleared = true;
+		std::cout << "stage clear!\n";
 		return true;
 	}
 
 	// 同じ座標だったらゲームオーバー
 	for (const auto& elem : mEnemy)
 	{
-		if (Collision::IsHitSqSq(elem.get(), mPlayer.get()))
+		if (false&&Collision::IsHitSqSq(elem.get(), mPlayer.get()))
 		{
 			std::cout << "game over! press R to restart.\n";
 			return true;
@@ -94,4 +96,9 @@ void Game::Draw()
 		elem->Draw(mTextureId[TEXID_ENEMY]);
 	}
 	mPlayer->Draw(mTextureId[TEXID_PACMAN]);
+}
+
+bool Game::IsCleared()
+{
+	return mIsCleared;
 }

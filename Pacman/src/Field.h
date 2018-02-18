@@ -21,7 +21,7 @@ public:
 	~Field();
 
 	/// normal
-	void Initialize();
+	void Initialize(const int stage);
 	void InitFromFile(const char* filename);
 	void Draw(const int id);
 	bool IsMovable(const int x, const int y) const;

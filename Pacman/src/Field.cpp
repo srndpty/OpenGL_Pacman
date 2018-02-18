@@ -10,14 +10,14 @@ extern Random random;
 
 Field::Field()
 {
-	Initialize();
+	Initialize(1);
 }
 
 Field::~Field()
 {
 }
 
-void Field::Initialize()
+void Field::Initialize(const int stage)
 {
 	// ƒ`ƒbƒv‚Ì‰Šú‰»
 	for (size_t i = 0; i < SIZE.y; i++)
@@ -29,7 +29,10 @@ void Field::Initialize()
 		}
 	}
 
-	InitFromFile("res/field1.txt");
+	std::stringstream ss;
+	ss << "res/field" << stage << ".txt";
+
+	InitFromFile(ss.str().c_str());
 }
 
 void Field::InitFromFile(const char * filename)

@@ -35,6 +35,7 @@ private:
 	int mNumId;
 	int mPacmanId;
 	int mFieldId;
+	bool mIsCleared = false;
 
 public:
 	/// special
@@ -42,10 +43,10 @@ public:
 	~Game();
 
 	/// normal
-	void Initialize();
+	void Initialize(const int stage);
 	void SetTexId(const int numId, const int pacmanId, const int fieldId, const int enemyId);
 	bool Tick();
 	void Draw();
-
+	bool IsCleared();
 };
 
